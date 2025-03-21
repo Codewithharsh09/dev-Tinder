@@ -23,7 +23,7 @@ const userSchema = new mongoose.Schema({
     },
     password: {
         type: String,
-        required: true,
+        // required: true,
         validate(value){
             if(!validator.isStrongPassword(value)){
                 throw new Error("Enter a Strong Password",+value)
@@ -57,6 +57,7 @@ const userSchema = new mongoose.Schema({
     },
     skills:{
         type:[String],
+      
     }
 },{timestamps:true});
 module.exports = mongoose.model("User", userSchema);

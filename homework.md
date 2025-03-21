@@ -79,5 +79,6 @@ Ep-08| Data Sanitization & Schema Validations:-
 - Add API level validation on Patch request & Signup post api
 - Data Sanitizing - Add API validation for each field
 - install validator(npm i validator)
+(Validator library - https://www.npmjs.com/package/validator)
 - Explore validator library functions and Use validator funcs for password, email, URL 
 - never trust req.body

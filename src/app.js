@@ -3,16 +3,45 @@ const connectDB = require("./config/database");
 const app = express();
 // const port =7000;
 const User = require("./models/user");
+const {validateSignUpData} = require("./utils/validation")
+const bcrypt = require("bcrypt");
 app.use(express.json());
 // const {adminAuth,userAuth} = require("../src/middleware/auth")
 
+
+app.post("/login",async (req,res)=>{
+    try{
+        const {emailId,password} = req.body;
+        const user = await  User.findOne({emailId:emailId})
+        if(!user){
+            throw new Error("User not found")
+        }
+        const isUserFind = await bcrypt.compare(password,user.password)
+if(isUserFind){
+    res.send("Log in successfully")
+}else{
+    throw new Error("Invalid parameter")
+}
+    }catch(err){
+        res.status(401).send("ERROR : ",err.message)
+    }
+})
 app.post("/signup", async (req, res) => {
-    const user = new User(req.body)
     try {
+        //Validation of data
+        validateSignUpData(req);
+        const {firstName,lastName,emailId,password} = req.body
+        //Encrypt the password
+        const passwordHash =await bcrypt.hash(password,10)
+        console.log(passwordHash)
+        //creating a new instance of the user model
+        const user = new User({
+            firstName,lastName,emailId,password:passwordHash
+        })
         await user.save();
         res.send("User Added successfully");
     } catch (err) {
-        res.status(401).send("Error saving the user:" + err.message);
+        res.status(401).send("ERROR : " + err.message);
     }
 });
 
@@ -34,10 +63,7 @@ app.post("/addUser", async (req, res) => {
     const user = new User(req.body)
     try {
         await user.save()
-        console.log(user)
-        // const newUsers = await User.insertMany(users)
-        // console.log("Users Inserted:", newUsers)
-        // res.status(201).json({ message: "Users added successfully!", data: newUsers });
+        res.status(201).send({ message: "Users added successfully!", user });
     } catch (err) {
         res.status(500).json({ error: "Users not added", details: err.message });
     }

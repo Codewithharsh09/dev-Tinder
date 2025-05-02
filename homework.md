@@ -82,3 +82,58 @@ Ep-08| Data Sanitization & Schema Validations:-
 (Validator library - https://www.npmjs.com/package/validator)
 - Explore validator library functions and Use validator funcs for password, email, URL 
 - never trust req.body
+
+Ep-09 | Encrypting Password
+- Validate data in Signup API
+- Create PasswordHash using bcrypt.hash & save the user is excrupted password
+- Create login API
+- Compare passwords and throw errors if email or password is invalid
+
+Ep-10 | Authentication, JWT & Cookies
+- Install cookie-parser
+- Just send a dummy cookie to user
+- Create GET/profile API and check if you get the cookie back
+- Install jsonwebtoken
+- IN login API, after email and password validation, create a JWT token and send it to user in cookie
+- read the cookies inside your profile API and logged in user
+- userAuth Middleware
+- Add the userAuth middleware in profile API and a new sendConnectionRequest API
+- Set the expiry of JWT token and cookies to 7 days
+- Create userSchema method to getJWT()
+- Create UserSchema method to comparePassword(passwordInputByUser)
+
+Ep-11 | Diving into the API's and express Router
+
+- Explore Tinder APIs
+- Create a list  all APIs you can think of in Dev Tinder
+- Group multiple routes 
+- Read documentation for express.Router
+- Create routes folder for managing auth,Profile,request routers
+- create authRouter, profileRouter, requestRouter
+- Import these routers in app.js
+- Create POST/ Logout API
+- Create PATCH /Profile/edit
+- Create PATCH /profile/password API => Forgot password API
+- Make you validate all data in every POST, PATCH apis
+
+Ep-12| Logical db query & compound-indexes
+
+- Create Connection Request Schema 
+- Send connection Request API
+- Proper validation of Data 
+- Think about All corner cases
+- $or query and $and query in mongoose all query
+- Read more about indexes in MongoDB
+- Schema.pre("save")function
+- Why do we need index in DB?
+- What is the advantages and disadvantages of creating ?
+
+Ep-13| ref, Populate & Thought process of writing APIs
+
+- Write code with proper validations /request./review/:status/:requestId
+- Thought process - POST vs GET
+- Read about ref and populate- https://mongoosejs.com/docs/populate.html
+- Create GET /user/requests/received with all the checks
+- create GET GET /user/connections
+- https://www.mongodb.com/docs/manual/reference/operator/query-logical/ $and $or $nor
+

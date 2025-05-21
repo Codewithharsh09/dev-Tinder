@@ -3,7 +3,7 @@ const authRouter = express.Router();
 const { validateSignUpData } = require("../utils/validation")
 const User = require("../models/user");
 const bcrypt = require("bcrypt");
-const user = require("../models/user");
+// const user = require("../models/user");
 
 
 authRouter.post("/signup", async (req, res) => {
@@ -42,7 +42,7 @@ authRouter.post("/login", async (req, res) => {
 
             //Add the token to cookie and send the response back to the user
             res.cookie("token", token,{httpOnly:true})
-            res.send("Login successfully!!")
+            res.send(user);
         } else {
             throw new Error("Invalid Credentials")
         }

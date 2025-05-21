@@ -136,4 +136,8 @@ Ep-13| ref, Populate & Thought process of writing APIs
 - Create GET /user/requests/received with all the checks
 - create GET GET /user/connections
 - https://www.mongodb.com/docs/manual/reference/operator/query-logical/ $and $or $nor
+- logic for GET /feed API
+- Explore the $nin, $and $ne $nin and other query operators
+- Theory of Pagination
+- .skip() and .limit()
 
